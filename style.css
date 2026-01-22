@@ -1,0 +1,147 @@
+:root {
+  --bg-color: #040d12;
+
+  --bar-color: #004ea1;
+
+  --blur-bg-color: rgba(255, 255, 255, 0);
+
+  --card-bg-color: #ffffff50;
+
+  --container-color: #ffffff15;
+
+  --image-bg-color: rgb(20, 20, 20);
+
+  --font-color: #f2f2f2;
+
+  --hovered-font-color: #f2f2f2;
+
+  --active-font-color: #f2f2f2;
+
+  --red-font: crimson;
+
+  --thin-border-color: rgba(255, 255, 255, 0.15);
+
+  --box-shadow-color: rgba(0, 0, 0, 0.155);
+
+  --text-shadow-color: black;
+  --icon-color: #333333;
+
+  --button-color: #0050b2;
+
+  --transparent-button-color: rgba(255, 255, 255, 0);
+
+  --hovered-button-color: #73877b;
+
+  --active-button-color: #839788;
+
+  --footer-bg-color: rgb(20, 20, 20);
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  /* background-color: white; */
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--font-color);
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+main {
+  background-image: url(images/bg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  background-image: url(images/weatherBg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 4rem;
+}
+
+.searchBar {
+  display: flex;
+}
+
+#search {
+  background-color: transparent;
+  border: 0.1rem solid var(--bar-color);
+  color: var(--font-color);
+  border-radius: 1rem 0 0 1rem;
+}
+#search::placeholder {
+  color: var(--font-color);
+  text-align: center;
+}
+
+#search:enabled {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+#go {
+  padding: 0 1rem;
+  border-radius: 0 1rem 1rem 0;
+  background-color: var(--button-color);
+  color: var(--font-color);
+  font-size: 1rem;
+}
+
+.weatherInfo {
+  display: none;
+}
+
+.para {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cityName {
+  font-size: 2rem;
+}
+
+.temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#invalidInput {
+  font-size: 1.5rem;
+  display: none;
+}
+
+.info {
+  display: flex;
+  gap: 2rem;
+}
