@@ -99,6 +99,7 @@ main {
   color: var(--font-color);
   border-radius: 1rem 0 0 1rem;
 }
+
 #search::placeholder {
   color: var(--font-color);
   text-align: center;

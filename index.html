@@ -8,42 +8,43 @@
   <title>Weather Checker</title>
 </head>
 
-  <body>
-    <main>
-      <div class="container">
-        <h1>Weather App</h1>
-        <div class="searchBar">
-          <input type="text" id="search" placeholder="Enter a city" />
-          <button id="go">Go</button>
+<body>
+  <main>
+    <div class="container">
+      <h1>Weather App</h1>
+      <div class="searchBar">
+        <input type="text" id="search" placeholder="Enter a city" />
+        <button id="go">Go</button>
+      </div>
+      <p id="invalidInput"></p>
+      <div class="weatherInfo">
+        <img id="sky" src="" alt="" />
+        <p class="para" id="cityPara">City</p>
+        <p class="para cityName" id="city"></p>
+        <div class="temp">
+          <p class="para" id="tempPara">Temperature</p>
         </div>
-        <p id="invalidInput"></p>
-        <div class="weatherInfo">
-          <img id="sky" src="" alt="" />
-          <p class="para" id="cityPara">City</p>
-          <p class="para cityName" id="city"></p>
-          <div class="temp">
-            <p class="para" id="tempPara">Temperature</p>
+        <p class="para" id="temp"></p>
+        <div class="info">
+          <div class="wind">
+            <img src="images/airy.svg" alt="" />
+            <p class="para" id="windPara">Wind Speed</p>
+            <p class="para" id="windSpeed"></p>
           </div>
-          <p class="para" id="temp"></p>
-          <div class="info">
-            <div class="wind">
-              <img src="images/airy.svg" alt="" />
-              <p class="para" id="windPara">Wind Speed</p>
-              <p class="para" id="windSpeed"></p>
-            </div>
-            <div class="humidity">
-              <img src="images/humidity.svg" alt="this is an image" />
+          <div class="humidity">
+            <img src="images/humidity.svg" alt="this is an image" />
 
-              <p class="para" id="humidityPara">Humidity</p>
-              <p class="para" id="humidity"></p>
-            </div>
+            <p class="para" id="humidityPara">Humidity</p>
+            <p class="para" id="humidity"></p>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 
 
-  </body>
+</body>
+
 </html>
