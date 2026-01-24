@@ -8,42 +8,165 @@
   <title>Weather Checker</title>
 </head>
 
-  <body>
-    <main>
-      <div class="container">
-        <h1>Weather App</h1>
-        <div class="searchBar">
-          <input type="text" id="search" placeholder="Enter a city" />
-          <button id="go">Go</button>
+<body class="dark">
+
+  <header>
+    <nav>
+      <ul>
+        <li class="home"><a href="#home">Home</a></li>
+        <li class="li-item">
+          <a href="#">Forecast</a>
+        </li>
+        <li class="li-item">
+          <a href="#">Api</a>
+        </li>
+        <li class="li-item">
+          <a href="#">About</a>
+        </li>
+        <li class="searchBar">
+          <input type="text" id="search" placeholder="Enter a city">
+          <img src="images/search.svg" id="go" alt="">
+        </li>
+        <li class="li-item">
+          <img id="theme" src="images/darkMode.svg" alt="" />
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <div class="container">
+      <div class="status">
+        <div class="info">
+          <p id="city">Rajshahi</p>
+          <p>26.01.2026</p>
         </div>
-        <p id="invalidInput"></p>
-        <div class="weatherInfo">
-          <img id="sky" src="" alt="" />
-          <p class="para" id="cityPara">City</p>
-          <p class="para cityName" id="city"></p>
+        <div class="state">
+
           <div class="temp">
-            <p class="para" id="tempPara">Temperature</p>
+            <p id="temp">19 ' C</p>
+            <img id="sky" src="images/airy.svg" alt="">
+            <p id="weatherSky">Airy</p>
           </div>
-          <p class="para" id="temp"></p>
-          <div class="info">
-            <div class="wind">
-              <img src="images/airy.svg" alt="" />
-              <p class="para" id="windPara">Wind Speed</p>
-              <p class="para" id="windSpeed"></p>
-            </div>
-            <div class="humidity">
-              <img src="images/humidity.svg" alt="this is an image" />
+          <div class="otherState">
+            <p id="humidity">Humidity = 20</p>
+            <p id="windSpeed">wind speed = 180 km/s</p>
+          </div>
 
-              <p class="para" id="humidityPara">Humidity</p>
-              <p class="para" id="humidity"></p>
-            </div>
+        </div>
+
+        <div class="weatherToday">
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>Today</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
           </div>
         </div>
+
       </div>
-    </main>
+      <div class="forecast">
+        <div class="greeting">
+          <p>Good Morning</p>
+          <p>12.11</p>
+        </div>
 
-    <script src="index.js"></script>
+        <div class="forcastPreview">
+          <div>
+            <p>The Day</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>The Day</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>The Day</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>The Day</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>The Day</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+          <div>
+            <p>The Day</p>
+            <p>20 ' C</p>
+            <p>sunny</p>
+          </div>
+        </div>
 
+      </div>
+    </div>
 
-  </body>
+  </main>
+
+  <script src="index.js"></script>
+
+</body>
+
 </html>
