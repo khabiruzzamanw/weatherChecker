@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 const city = document.querySelector("#search");
 const go = document.querySelector("#go");
 
