@@ -80,9 +80,9 @@ async function request(value) {
       weatherSky.innerHTML = `${weatherData.weather[0].description}`;
       dCity.innerHTML = weatherData.name;
       temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
-      windSpeedImg.src = 'images/airy.svg';
+      windSpeedImg.src = 'images/windSpeedDark.svg';
       windSpeed.innerHTML = `${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h`;
-      humidityImg.src = 'images/humidity.svg';
+      humidityImg.src = 'images/humidityDark.svg';
       humidity.innerHTML = `${weatherData.main.humidity}   %`;
 
       getForecastData(weatherData);
@@ -258,11 +258,15 @@ theme.addEventListener("click", () => {
     themeData.replace('dark', 'light');
     go.src = 'images/searchDark.svg';
     theme.src = "images/lightMode.svg";
+    humidityImg.src = 'images/humidityDark.svg';
+    windSpeedImg.src = 'images/windSpeedDark.svg';
 
   } else {
     themeData.replace('light', 'dark');
     go.src = 'images/searchLight.svg';
     theme.src = "images/darkMode.svg";
+    humidityImg.src = 'images/humidityLight.svg';
+    windSpeedImg.src = 'images/windSpeedLight.svg';
   }
 
   console.log(document.body.classList);

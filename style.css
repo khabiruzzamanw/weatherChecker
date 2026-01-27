@@ -1,40 +1,21 @@
 :root {
   --bg-color: #111111;
-  --bg-accent-up: #ffffff15;
-  --bg-accent-down: #ffffff15;
-  --container-color: #1e1e1e;
+  --accent-color: rgba(255, 255, 255, 0.15);
+  --container-color: #22222290;
+  --button-color: #111111;
   --glass-effect-color: rgba(255, 255, 255, 0);
-  --button-color: #333333;
-  --font-color: #f2f2f2;
-  --bar-color: rgba(255, 255, 255, 0.15);
-  --accent-color: crimson;
-  --red-accent-low-opacity: rgba(220, 20, 60, 0.15);
-  --box-shadow-color: rgba(150, 150, 150, 0.01);
-
-  --font-size-1: 3rem;
-  --font-size-2: 2rem;
-  --font-size-3: 1.5rem;
-  --font-size-4: 1rem;
-  --font-size-5: 0.8rem;
-
-  --h1: 5rem;
-  --h2: 2.5rem;
-  --h3: 1.5rem;
-  --p: 1rem;
+  --font-color: #ffffff;
+  --box-shadow-color: #a2a2a220;
 }
 
 .light {
-  --bg-color: #eeeeee;
-  --bg-accent-up: #ff08d620;
-  --bg-accent-down: #0055ff25;
-  --container-color: #e5e5e5;
+  --bg-color: #ffffff;
+  --accent-color: #5c7e8f;
+  --container-color: #d4dde290;
+  --button-color: #ffffff;
   --glass-effect-color: rgba(255, 255, 255, 0);
-  --button-color: #005238;
-  --font-color: #0e0e0e;
-  --bar-color: rgba(0, 119, 255, 0.25);
-  --accent-color: crimson;
-  --red-accent-low-opacity: rgba(220, 20, 60, 0.15);
-  --box-shadow-color: rgba(0, 0, 0, 0.04);
+  --font-color: #111111;
+  --box-shadow-color: #a2a2a220;
 }
 
 * {
@@ -49,6 +30,7 @@
 img {
   max-width: 100%;
   object-fit: contain;
+  display: block;
 }
 
 html {
@@ -60,7 +42,7 @@ body {
   font-family: Arial;
   background-color: var(--bg-color);
   color: var(--font-color);
-  font-size: calc(var(--p));
+  font-size: 1rem;
   overflow-x: hidden;
 }
 
@@ -78,7 +60,7 @@ nav {
   background-color: var(--glass-effect-color);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border-bottom: 1px solid var(--bar-color);
+  border-bottom: 1px solid var(--accent-color);
   border-radius: 0 0 1rem 1rem;
 }
 
@@ -96,7 +78,7 @@ ul .home {
 }
 
 ul .home a {
-  color: var(--red-accent);
+  color: var(--accent-color);
 }
 
 nav ul .li-item a {
@@ -106,7 +88,7 @@ nav ul .li-item a {
 
 nav ul .li-item a::before {
   content: "";
-  background-color: var(--red-accent);
+  background-color: var(--accent-color);
   position: absolute;
   bottom: -0.1rem;
   left: 0;
@@ -134,8 +116,9 @@ nav ul .li-item a:hover::before {
   color:var(--font-color);
   background-color: transparent;
   padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-  border-bottom: 1px solid var(--bar-color);
+  border-bottom: 1px solid var(--accent-color);
   border-radius: 1rem;
+  font-size: 1rem;
   max-width:50%;
   transition: max-width 0.2s ease-in;
 
@@ -165,7 +148,7 @@ main {
   max-width: 100%;
   background-color: var(--container-color);
   box-shadow: 0 0 0.5rem var(--box-shadow-color),
-    0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
+    0 0 1rem var(--box-shadow-color);
   border-radius: 1rem;
   flex: 1;
   display: flex;
@@ -227,21 +210,11 @@ main {
   width: 10rem;
 }
 
-
-/* .weatherToday {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(80px, 100%), 1fr));
-
-}
-
-.weatherToday div {} */
-
 .forecast {
   max-width: 100%;
   background-color: var(--container-color);
   box-shadow: 0 0 0.5rem var(--box-shadow-color),
-    0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
+    0 0 1rem var(--box-shadow-color);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -263,7 +236,7 @@ font-size: 1.5rem;
 }
 .forecast .greeting  .time{
   padding:0.5rem 1rem;
-  background-color: #fff;
+  background-color: var(--bg-color);
   border-radius: 0.5rem;
   font-size: 1.25rem;
 }
@@ -305,8 +278,8 @@ font-size: 1.5rem;
 .forecast .forcastPreview .dayParent {
   max-width: 100%;
   background-color: var(--glass-effect-color);
-  border-top:0.1rem solid var(--bar-color) ;
-  border-left: 0.1rem solid var(--bar-color);
+  border-top:0.1rem solid var(--accent-color) ;
+  border-left: 0.1rem solid var(--accent-color);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -333,7 +306,7 @@ font-size: 1.5rem;
   width: 100%;
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
   gap: 2rem;
 }
 
@@ -341,7 +314,7 @@ font-size: 1.5rem;
   /* width:100%; */
   background-color: var(--glass-effect-color);
   color: var(--font-color);
-  border: 0.1rem solid var(--bar-color);
+  border: 0.1rem solid var(--accent-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -350,7 +323,7 @@ font-size: 1.5rem;
   padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem var(--box-shadow-color),
-    0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
+    0 0 1rem var(--box-shadow-color);
 }
 
 .forecast .forcastPreview .dayParent .day .dayGrandChild .hourlyTime {
