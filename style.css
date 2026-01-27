@@ -2,7 +2,7 @@
   --bg-color: #111111;
   --bg-accent-up: #ffffff15;
   --bg-accent-down: #ffffff15;
-  --container-color: #151515;
+  --container-color: #1e1e1e;
   --glass-effect-color: rgba(255, 255, 255, 0);
   --button-color: #333333;
   --font-color: #f2f2f2;
@@ -27,6 +27,7 @@
   --bg-color: #eeeeee;
   --bg-accent-up: #ff08d620;
   --bg-accent-down: #0055ff25;
+    --container-color: #e5e5e5;
   --glass-effect-color: rgba(255, 255, 255, 0);
   --button-color: #005238;
   --font-color: #0e0e0e;
@@ -148,10 +149,26 @@ nav ul .li-item a:hover::before {
 }
 
 
-.searchBar{
-  display:flex;
+.searchBar {
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.searchBar .search:enabled {
+  background-color: var(--glass-effect-color);
+  color:var(--font-color);
+  border-bottom: 1px solid transparent;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+  font-size: 1.25rem;
+  max-width: 60%;
+  border-radius: 1rem;
+  transition: border-color 0.2s ease-in, transform 0.2s ease-in;
+}
+
+.searchBar .search:focus-within {
+  border-color: var(--bar-color);
+  transform: translateY(2px);
 }
 
 main {
@@ -165,7 +182,7 @@ main {
   width: 100%;
   display: flex;
   gap: 1rem;
-  padding:02rem;
+  padding: 02rem;
 
 }
 
@@ -184,7 +201,6 @@ main {
 }
 
 .info {
-  color: black;
   display: flex;
   justify-content: space-between;
 }
@@ -196,40 +212,48 @@ main {
 
 .state {
   display: flex;
-  align-items:last baseline;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding:10rem 0;
+  padding: 8rem 0;
 }
 
 .state .temp {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.state .temp p:nth-child(1) {
-  color:rgb(170, 0, 255);
-  font-size: 5rem;
+.state .temp .temperature {
+  font-size: 10rem;
 
 }
 
-.state .temp p:nth-child(3) {
-  color:pink; 
-  font-size: 2rem;
-
-}
-
-.state .temp img {
-  width:10rem;
-}
-
-.state .otherState {
+.state .temp .otherState {
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
 }
+
+.state .temp .otherState li {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.state .skySituation {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.state .skySituation img {
+  width: 10rem;
+}
+
 
 .weatherToday {
   display: grid;
@@ -239,14 +263,7 @@ main {
 }
 
 .weatherToday div {
-  background-color: rgb(100, 100, 100);
-  padding: 1rem;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
+
 }
 
 .forecast {
@@ -256,11 +273,10 @@ main {
     0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
   /* border:1px solid whitesmoke; */
   border-radius: 1rem;
-  flex: 1fr;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
+  /* justify-content: space-between; */
+  /* padding: 2rem; */
 
 
 }
@@ -275,20 +291,82 @@ main {
   font-size: 2rem;
 }
 
-.forecast .forcastPreview {
+.forecast .forcastPreviewContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding:0.5rem;
+
+}
+
+.forecast .forcastPreviewContainer ul {
+  display: flex;
+  gap: 2rem;
+}
+
+/* .forecast .forcastPreview {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100px, 100%), 1fr));
   gap: 1rem;
-}
+} */
 
-.forecast .forcastPreview div {
-  background-color: #ffffff7a;
+.forecast .forcastPreview .dayParent {
+  background-color: var(--bg-color);
   border-radius: 1rem;
   max-width: 100%;
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap:1rem;
+  padding:0.5rem;
+
+}
+
+.forecast .forcastPreview .dayParent {
+  display: none;
+}
+
+.forecast .forcastPreview .active {
+  display: flex;
+}
+
+.forecast .forcastPreview .dayParent .daytext {
+  font-size: 1.5rem;
+}
+
+.forecast .forcastPreview .dayParent .day {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 2rem;
+}
+
+.forecast .forcastPreview .dayParent .day .dayGrandChild {
+  /* width:100%; */
+  background-color: var(--glass-effect-color);  
+  color: var(--font-color);
+  border:0.1rem solid var(--bar-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 0.5rem;
+  padding:0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem var(--box-shadow-color),
+    0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
+}
+
+.forecast .forcastPreview .dayParent .day .dayGrandChild .hourlyTime{
+  width:100%;
+  text-align: center;
+  font-size: 1.25rem;
+  padding:0.5rem 0 ;
+}
+
+.forecast .forcastPreview .dayParent1{
+  display: flex;
 }
