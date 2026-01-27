@@ -53,7 +53,9 @@ async function request(value) {
   const dCity = document.querySelector("#city");
   const temp = document.querySelector("#temp");
   const windSpeed = document.querySelector("#windSpeed");
+  const windSpeedImg = document.querySelector("#windSpeedImg");
   const humidity = document.querySelector("#humidity");
+  const humidityImg = document.querySelector("#humidityImg");
   const sky = document.querySelector("#sky");
   const weatherSky = document.querySelector("#weatherSky");
   const forcastPreview = document.querySelector("#forcastPreview");
@@ -74,7 +76,9 @@ async function request(value) {
     weatherSky.innerHTML = `${weatherData.weather[0].description}`;
     dCity.innerHTML = weatherData.name;
     temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
+        windSpeedImg.src = 'images/airy.svg';
     windSpeed.innerHTML = `${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h`;
+    humidityImg.src = 'images/humidity.svg';
     humidity.innerHTML = `${weatherData.main.humidity}   %`;
 
     getForecastData(weatherData);
@@ -205,7 +209,6 @@ function getUi(arr) {
 
   liDay.forEach((element, index) => {
     element.addEventListener('click', (clickbutton) => {
-
       const dayDiv = document.querySelectorAll('.dayParent');
 
       dayDiv.forEach((div, i) => {
@@ -245,10 +248,12 @@ theme.addEventListener("click", () => {
 
   if (themeData.contains('dark')) {
     themeData.replace('dark', 'light');
+    go.src = 'images/searchDark.svg';
     theme.src = "images/lightMode.svg";
 
   } else {
     themeData.replace('light', 'dark');
+    go.src = 'images/searchLight.svg';
     theme.src = "images/darkMode.svg";
   }
 
