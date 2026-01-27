@@ -1,4 +1,36 @@
 const city = document.querySelector("#search");
+const go = document.querySelector("#go");
+const time = document.querySelector("#time");
+const date = document.querySelector("#date");
+const greetingText = document.querySelector("#greetingText");
+
+let dateInfo = new Date
+
+date.innerHTML = `${dateInfo.toLocaleDateString('en-Gb').replace(/\//g, ".")}`;
+setInterval(() => {
+  let dateInfo = new Date;
+  time.innerHTML = `${dateInfo.toLocaleTimeString()}`;
+
+}, 1000);
+
+let hourCheck = dateInfo.getHours();
+
+
+if (hourCheck < 17 && hourCheck >= 12) {
+  greetingText.innerHTML = 'Good afternoon'
+
+} else if (hourCheck > 5 && hourCheck < 12) {
+  greetingText.innerHTML = 'Good morning'
+
+} else {
+
+  greetingText.innerHTML = 'Good evening'
+}
+
+// setInterval(()=>{
+// let dateInfo = new Date ;
+
+// },)
 
 go.addEventListener("click", function (e) {
   e.preventDefault();
@@ -16,38 +48,209 @@ city.addEventListener("keydown", function (e) {
 });
 
 async function request(value) {
+
+
   const dCity = document.querySelector("#city");
   const temp = document.querySelector("#temp");
-  const weatherInfo = document.querySelector(".weatherInfo");
-  const info = document.querySelector(".info");
   const windSpeed = document.querySelector("#windSpeed");
   const humidity = document.querySelector("#humidity");
   const sky = document.querySelector("#sky");
+  const weatherSky = document.querySelector("#weatherSky");
+  const forcastPreview = document.querySelector("#forcastPreview");
 
-  let data = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${value}&units=metric&appid=baf121166603d8940559c2dfd69ff368`
-  );
 
-  let weatherData = await data.json();
 
   try {
-    weatherInfo.style.display = "block";
-    // console.log(weatherData.weather[0].icon);
+
+
+    let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value}&units=metric&appid=baf121166603d8940559c2dfd69ff368`);
+
+    let weatherData = await data.json();
+
+    console.log(weatherData);
+
+
     sky.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
+    weatherSky.innerHTML = `${weatherData.weather[0].description}`;
     dCity.innerHTML = weatherData.name;
     temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
-    windSpeed.innerHTML = (weatherData.wind.speed * 3.6).toFixed(2) + ` km/h`;
-    humidity.innerHTML = weatherData.main.humidity + ` %`;
-    invalidInput.style.display = "none";
+    windSpeed.innerHTML = `${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h`;
+    humidity.innerHTML = `${weatherData.main.humidity}   %`;
 
-    // console.log(typeof data);
-    // console.log(typeof weatherData);
-    // console.log(weatherData);
-    // console.log((temp.innerHTML = weatherData.main.temp));
-  } catch (error) {
-    const invalidInput = document.querySelector("#invalidInput");
-    invalidInput.style.display = "block";
-    weatherInfo.style.display = "none";
-    invalidInput.innerHTML = `Input a valid CITY`;
+    getForecastData(weatherData);
+
   }
+
+  catch (error) {
+
+    console.log(error);
+
+  }
+
 }
+
+
+
+async function getForecastData(value) {
+
+  const lon = value.coord.lon;
+
+  const lat = value.coord.lat;
+
+
+  const forecastData = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=baf121166603d8940559c2dfd69ff368`);
+
+  const forecastWeatherData = await forecastData.json();
+
+  let forecastWeatherDataInfoArr = [];
+
+  for (let index = 0; index < forecastWeatherData.list.length; index += 8) {
+
+    let forecastWeatherDataInfo = forecastWeatherData.list[index];
+
+    let dateTime = forecastWeatherDataInfo.dt;
+    let dayInfo = new Date(dateTime * 1000);
+
+    let dateInfo = dayInfo.getDate();
+    let monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let monthI = dayInfo.getMonth();
+    let month = monthNames[monthI];
+
+    let info = {
+      dateInfo,
+      month,
+      hourlyData: []
+    };
+
+
+
+    for (let i = 0; i < 8; i++) {
+      let forecastWeatherDataHourlyInfo = forecastWeatherData.list[index + i];
+
+      let timeInfo = new Date((forecastWeatherDataHourlyInfo.dt) * 1000);
+      let time = timeInfo.toLocaleTimeString();
+
+
+      let forecastWeatherDataInfoList = forecastWeatherDataHourlyInfo.main;
+
+      let averageTemp = forecastWeatherDataInfoList.temp;
+      let tempMax = forecastWeatherDataInfoList.temp_max;
+      let tempMin = forecastWeatherDataInfoList.temp_min;
+
+      let forecastSkyInfo = forecastWeatherDataHourlyInfo.weather;
+
+      let forecastSkyInfoSituation = forecastSkyInfo[0].description;
+
+      let infoDetails = { time, averageTemp, tempMax, tempMin, forecastSkyInfoSituation };
+
+      info.hourlyData.push(infoDetails);
+
+    }
+
+    forecastWeatherDataInfoArr.push(info);
+
+  }
+
+  getUi(forecastWeatherDataInfoArr);
+
+}
+
+
+
+function getUi(arr) {
+
+  forcastPreview.innerHTML = '';
+
+  arr.forEach((substance, index) => {
+
+    let dayParent = document.createElement('div');
+
+    dayParent.innerHTML = `<p class="daytext">${substance.dateInfo}  ${substance.month}</p>`
+
+    dayParent.setAttribute('class', 'dayParent');
+
+    dayParent.classList.add(`dayParent${index + 1}`);
+
+    let dayChild = document.createElement('div');
+    dayChild.setAttribute('class', 'day');
+
+    dayChild.classList.add(`day${index + 1}`);
+
+
+    forcastPreview.appendChild(dayParent);
+    dayParent.appendChild(dayChild);
+
+    substance.hourlyData.forEach((e) => {
+      let dayGrandChild = document.createElement('div');
+      dayGrandChild.setAttribute('class', 'dayGrandChild');
+
+      dayGrandChild.innerHTML =
+        `<p class="hourlyTime">At ${e.time}</p>
+                                <p>Average Temp : ${e.averageTemp} ℃</p>
+                                <div class="forecastWeatherInfoTemp">
+                                <p>Max-Temp : ${e.tempMax} ℃</p>
+                                <p>Min-Temp : ${e.tempMin} ℃</p>
+                                </div>
+                                <p>Sky : ${e.forecastSkyInfoSituation}</p>`
+
+      dayChild.appendChild(dayGrandChild);
+
+    });
+
+  });
+
+
+  const liDay = document.querySelectorAll('.liDay');
+
+
+  liDay.forEach((element, index) => {
+    element.addEventListener('click', (clickbutton) => {
+
+      const dayDiv = document.querySelectorAll('.dayParent');
+
+      dayDiv.forEach((div, i) => {
+
+        div.classList.remove("dayParent1");
+
+        if (index === i) {
+
+          div.classList.add('active');
+        }
+
+        else {
+          div.classList.remove('active');
+        }
+
+      });
+
+    });
+  });
+
+}
+
+
+
+
+
+//this section is for the theme changer
+
+const theme = document.getElementById("theme");
+
+theme.addEventListener("mouseover", () => {
+  theme.style.cursor = "pointer";
+});
+
+theme.addEventListener("click", () => {
+  let themeData = document.body.classList;
+
+  if (themeData.contains('dark')) {
+    themeData.replace('dark', 'light');
+    theme.src = "images/lightMode.svg";
+
+  } else {
+    themeData.replace('light', 'dark');
+    theme.src = "images/darkMode.svg";
+  }
+
+  console.log(document.body.classList);
+});
