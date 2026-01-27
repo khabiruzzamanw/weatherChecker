@@ -27,21 +27,18 @@ if (hourCheck < 17 && hourCheck >= 12) {
   greetingText.innerHTML = 'Good evening'
 }
 
-// setInterval(()=>{
-// let dateInfo = new Date ;
-
-// },)
-
 go.addEventListener("click", function (e) {
   e.preventDefault();
-  let cityName = city.value;
-  request(cityName);
+  let cityName = city.value.trim();
+
+  if (cityName) {
+    request(cityName);
+  }
 });
 
 city.addEventListener("keydown", function (e) {
-  // e.preventDefault();
-  //console.log("hello");
-  let cityName = city.value;
+
+  let cityName = city.value.trim();
   if (e.key === "Enter") {
     request(cityName);
   }
@@ -64,30 +61,40 @@ async function request(value) {
 
   try {
 
+    if (value === '') {
 
-    let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value}&units=metric&appid=baf121166603d8940559c2dfd69ff368`);
+      throw new error;
 
-    let weatherData = await data.json();
+    }
+    else {
 
-    console.log(weatherData);
+
+      let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value}&units=metric&appid=baf121166603d8940559c2dfd69ff368`);
+
+      let weatherData = await data.json();
+
+      console.log(weatherData);
 
 
-    sky.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
-    weatherSky.innerHTML = `${weatherData.weather[0].description}`;
-    dCity.innerHTML = weatherData.name;
-    temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
-        windSpeedImg.src = 'images/airy.svg';
-    windSpeed.innerHTML = `${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h`;
-    humidityImg.src = 'images/humidity.svg';
-    humidity.innerHTML = `${weatherData.main.humidity}   %`;
+      sky.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
+      weatherSky.innerHTML = `${weatherData.weather[0].description}`;
+      dCity.innerHTML = weatherData.name;
+      temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
+      windSpeedImg.src = 'images/airy.svg';
+      windSpeed.innerHTML = `${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h`;
+      humidityImg.src = 'images/humidity.svg';
+      humidity.innerHTML = `${weatherData.main.humidity}   %`;
 
-    getForecastData(weatherData);
+      getForecastData(weatherData);
+    }
 
   }
 
   catch (error) {
 
     console.log(error);
+
+    dCity.innerHTML = 'Invalid city name'
 
   }
 
@@ -100,7 +107,6 @@ async function getForecastData(value) {
   const lon = value.coord.lon;
 
   const lat = value.coord.lat;
-
 
   const forecastData = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=baf121166603d8940559c2dfd69ff368`);
 
@@ -218,10 +224,12 @@ function getUi(arr) {
         if (index === i) {
 
           div.classList.add('active');
+          // element.classList.add('tabbed');
         }
 
         else {
           div.classList.remove('active');
+          // element.classList.remove('tabbed');
         }
 
       });
