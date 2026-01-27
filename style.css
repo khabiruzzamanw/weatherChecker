@@ -27,7 +27,7 @@
   --bg-color: #eeeeee;
   --bg-accent-up: #ff08d620;
   --bg-accent-down: #0055ff25;
-    --container-color: #e5e5e5;
+  --container-color: #e5e5e5;
   --glass-effect-color: rgba(255, 255, 255, 0);
   --button-color: #005238;
   --font-color: #0e0e0e;
@@ -157,7 +157,7 @@ nav ul .li-item a:hover::before {
 
 .searchBar .search:enabled {
   background-color: var(--glass-effect-color);
-  color:var(--font-color);
+  color: var(--font-color);
   border-bottom: 1px solid transparent;
   padding: 0.25rem 0.25rem 0.25rem 0.5rem;
   font-size: 1.25rem;
@@ -262,9 +262,7 @@ main {
 
 }
 
-.weatherToday div {
-
-}
+.weatherToday div {}
 
 .forecast {
   width: 100%;
@@ -296,7 +294,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding:0.5rem;
+  padding: 0.5rem;
 
 }
 
@@ -305,12 +303,28 @@ main {
   gap: 2rem;
 }
 
-/* .forecast .forcastPreview {
+.forecast .forcastPreviewContainer ul .liDay {
+  position: relative;
+}
+
+.forecast .forcastPreviewContainer ul .liDay:hover{
+  cursor: pointer;
+}
+
+.forecast .forcastPreviewContainer ul .liDay::before {
+  content: "";
+  background-color: var(--red-accent);
+  position: absolute;
+  bottom: -0.1rem;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  transition: width 0.3s ease-out;
+}
+
+.forecast .forcastPreviewContainer ul .liDay:hover::before {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100px, 100%), 1fr));
-  gap: 1rem;
-} */
+}
 
 .forecast .forcastPreview .dayParent {
   background-color: var(--bg-color);
@@ -320,8 +334,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap:1rem;
-  padding:0.5rem;
+  gap: 1rem;
+  padding: 0.5rem;
 
 }
 
@@ -340,33 +354,33 @@ main {
 .forecast .forcastPreview .dayParent .day {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(185px, 100%), 1fr));
   gap: 2rem;
 }
 
 .forecast .forcastPreview .dayParent .day .dayGrandChild {
   /* width:100%; */
-  background-color: var(--glass-effect-color);  
+  background-color: var(--glass-effect-color);
   color: var(--font-color);
-  border:0.1rem solid var(--bar-color);
+  border: 0.1rem solid var(--bar-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   gap: 0.5rem;
-  padding:0.5rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem var(--box-shadow-color),
     0 0 1rem var(--box-shadow-color), 0 0 2rem var(--box-shadow-color);
 }
 
-.forecast .forcastPreview .dayParent .day .dayGrandChild .hourlyTime{
-  width:100%;
+.forecast .forcastPreview .dayParent .day .dayGrandChild .hourlyTime {
+  width: 100%;
   text-align: center;
   font-size: 1.25rem;
-  padding:0.5rem 0 ;
+  padding: 0.5rem 0;
 }
 
-.forecast .forcastPreview .dayParent1{
+.forecast .forcastPreview .dayParent1 {
   display: flex;
 }
