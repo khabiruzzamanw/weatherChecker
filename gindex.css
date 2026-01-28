@@ -1,0 +1,262 @@
+:root {
+  --font-main: 'Poppins', sans-serif;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --glass-blur: blur(12px);
+}
+
+.light {
+  --bg-gradient: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  --card-bg: rgba(255, 255, 255, 0.35);
+  --card-border: rgba(255, 255, 255, 0.6);
+  --text-main: #1e293b;
+  --text-secondary: #475569;
+  --accent: #005fcc;
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  transition: background 0.5s ease;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+
+.search {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  outline: none;
+  padding: 0.2rem;
+  font-size: 1rem;
+  width: 200px;
+}
+
+.search-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+}
+
+.search-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+#theme {
+  width: 24px;
+  cursor: pointer;
+}
+
+/* Layout */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.main-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 30px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.temperature {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+#city {
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.weather-desc {
+  text-transform: capitalize;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Details Grid - Updated to handle JS injected content */
+.weather-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.detail-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* This styles the images injected by JS (windSpeedImg etc) */
+.detail-card img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* This styles the P tag injected by JS */
+.detail-card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.detail-card .label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Forecast */
+.forecast-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.forcastPreviewContainer ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.liDay {
+  padding: 0.6rem 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.liDay:hover,
+.active-tab {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Forecast Items */
+.dayParent {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.dayParent.active {
+  display: flex;
+}
+
+.day-header {
+  margin-left: 5px;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
+}
+
+.dayGrandChild {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1rem;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.dayGrandChild:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.forecastWeatherInfoTemp {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
