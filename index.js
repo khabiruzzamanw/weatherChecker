@@ -80,10 +80,13 @@ async function request(value) {
       weatherSky.innerHTML = `${weatherData.weather[0].description}`;
       dCity.innerHTML = weatherData.name;
       temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
-      windSpeedImg.src = 'images/windSpeedDark.svg';
-      windSpeed.innerHTML = `${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h`;
-      humidityImg.src = 'images/humidityDark.svg';
-      humidity.innerHTML = `${weatherData.main.humidity}   %`;
+
+      windSpeed.innerHTML = `<img id="windSpeedImg" src="images/windSpeedDark.svg" alt="">
+                <p >${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h</p>`;
+
+
+      humidity.innerHTML = `<img id="humidityImg" src="images/humidityDark.svg" alt="">
+                            <p >${weatherData.main.humidity}   %</p>`;
 
       getForecastData(weatherData);
     }
