@@ -122,10 +122,6 @@ ul .home a {
   cursor: pointer;
 }
 
-/* .searchBar .search:focus-within {
-  max-width: 80%;
-} */
-
 main {
   max-width: 100%;
   overflow-x: hidden;
@@ -373,7 +369,7 @@ main {
 
   nav{
     padding:1rem;
-  }
+    }
 }
 
 @media screen and (max-width : 780px) {
