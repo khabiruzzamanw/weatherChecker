@@ -75,9 +75,6 @@ async function request(value) {
 
       console.log(weatherData);
 
-      otherState.style.display = 'flex';
-      forcastPreview.style.display = 'block';
-
       sky.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
       weatherSky.innerHTML = `${weatherData.weather[0].description}`;
       dCity.innerHTML = weatherData.name;
