@@ -74,8 +74,6 @@ async function request(value) {
 
       let weatherData = await data.json();
 
-      console.log(weatherData);
-
       otherState.style.display = 'flex';
       forcastPreview.style.display = 'block';
 
