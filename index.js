@@ -4,7 +4,6 @@ const time = document.querySelector("#time");
 const date = document.querySelector("#date");
 const greetingText = document.querySelector("#greetingText");
 const theme = document.getElementById("theme");
-const otherState = document.querySelector('.otherState');
 const forcastPreview = document.querySelector('.forcastPreview');
 
 let dateInfo = new Date
@@ -64,7 +63,7 @@ async function request(value) {
 
     if (value === '') {
 
-      throw new error;
+      throw new Error();
 
     }
     else {
@@ -97,11 +96,16 @@ async function request(value) {
 
   catch (error) {
 
-    console.log(error);
+    // console.log(error);
 
+    sky.src = '';
+    weatherSky.innerHTML = '';
     dCity.innerHTML = 'Invalid city name';
-    otherState.style.display = 'none';
-    forcastPreview.style.display = 'none';
+    temp.innerHTML = '-_-';
+    windSpeed.innerHTML = '';
+    humidity.innerHTML = '';
+
+    forcastPreview.innerHTML = '';
 
   }
 
@@ -231,12 +235,10 @@ function getUi(arr) {
         if (index === i) {
 
           div.classList.add('active');
-          // element.classList.add('tabbed');
         }
 
         else {
           div.classList.remove('active');
-          // element.classList.remove('tabbed');
         }
 
       });
