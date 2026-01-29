@@ -50,18 +50,11 @@ header {
   width: 100%;
   position: fixed;
   z-index: 1000;
-  top: 0;
+  top: 1rem;
 }
 
 nav {
-  max-width: 100%;
-  margin: auto;
-  padding: 1rem;
-  background-color: var(--glass-effect-color);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-bottom: 1px solid var(--accent-color);
-  border-radius: 0 0 1rem 1rem;
+  width: 100%;
 }
 
 ul {
@@ -73,61 +66,55 @@ ul {
   gap: 2rem;
 }
 
-ul .home {
-  margin-right: auto;
-}
+
 
 ul .home a {
   color: var(--accent-color);
 }
 
-nav ul .li-item a {
-  color: var(--font-color);
-  position: relative;
+#homeButtonicon {
+  display: none;
 }
-
-nav ul .li-item a::before {
-  content: "";
-  background-color: var(--accent-color);
-  position: absolute;
-  bottom: -0.1rem;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  transition: width 0.3s ease-out;
-}
-
-nav ul .li-item a:hover::before {
-  width: 100%;
-}
-
-
-
 
 .searchBar {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  border-radius: 1rem;
+  border: 0.1rem solid var(--accent-color);
   overflow: hidden;
+  max-width: 100%;
 }
 
 .searchBar .search {
-  color: var(--font-color);
-  background-color: transparent;
-  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-  border-bottom: 1px solid var(--accent-color);
-  border-radius: 1rem;
+  width: 100%;
+  height: 2.5rem;
+  padding-left: 0.5rem;
   font-size: 1rem;
-  max-width: 50%;
-  transition: max-width 0.2s ease-in;
+  flex: 2;
+  color: var(--font-color);
+  background-color: var(--glass-effect-color);
 
 
 }
 
-.searchBar .search:focus-within {
+.searchBar .searchButton {
+  width: 50%;
+  height: 2.5rem;
+  flex: 1;
+  background-color: var(--accent-color);
+  font-size: 1rem;
+  color: var(--font-color);
+}
+
+.searchBar .searchButton:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* .searchBar .search:focus-within {
   max-width: 80%;
-}
+} */
 
 main {
   max-width: 100%;
@@ -153,7 +140,7 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 1.25rem;
 }
 
@@ -216,11 +203,10 @@ main {
   box-shadow: 0 0 0.5rem var(--box-shadow-color),
     0 0 1rem var(--box-shadow-color);
   border-radius: 1rem;
+  flex: 2;
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  flex: 1.5;
-
 }
 
 .forecast .greeting {
@@ -369,6 +355,13 @@ main {
 
 }
 
+@media screen and (max-width : 600px) {
+
+  ul .home {
+    margin-right: auto;
+  }
+}
+
 @media screen and (max-width : 780px) {
 
   ul {
@@ -404,6 +397,15 @@ main {
 
   .forecast .forcastPreview .dayParent .daytext {
     font-size: 1.25rem;
+  }
+
+  #homeButton {
+    display: none;
+  }
+
+  #homeButtonicon {
+    display: block;
+    width: 100%;
   }
 
 

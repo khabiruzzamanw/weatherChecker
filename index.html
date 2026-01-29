@@ -13,23 +13,22 @@
   <header>
     <nav>
       <ul>
-        <li class="home"><a href="#home">Home</a></li>
-        <li class="li-item">
-          <a href="#">Forecast</a>
+
+        <li class="home">
+          <a href="#home" id="homeButton">Home</a>
+         <img src="images/homeDark.svg" id="homeButtonicon" alt="">
         </li>
-        <li class="li-item">
-          <a href="#">Api</a>
-        </li>
-        <li class="li-item">
-          <a href="#">About</a>
-        </li>
+      
         <li class="searchBar">
           <input type="text" id="search" class="search" placeholder="Enter a city">
-          <img src="images/searchDark.svg" id="go" alt="">
+          <!-- <img src="images/searchDark.svg" id="go" alt=""> -->
+          <button id="go" class="searchButton">Search</button>
         </li>
+        
         <li class="li-item">
           <img id="theme" src="images/lightMode.svg" alt="" />
         </li>
+
       </ul>
     </nav>
   </header>
@@ -42,7 +41,7 @@
       <div class="status">
 
         <div class="info">
-          <p id="city"></p>
+          <p id="city">City</p>
           <p id="date"></p>
         </div>
 
@@ -50,7 +49,7 @@
 
           <div class="temp">
 
-            <p id="temp" class="temperature"></p>
+            <p id="temp" class="temperature">-_-</p>
 
             <div class="otherState">
               <li id="humidity">
@@ -80,7 +79,7 @@
 
         <div class="forcastPreviewContainer">
           <ul>
-            <li class="liDay">Day 1 </li>
+            <li class="liDay">Today </li>
             <li class="liDay">Day 2 </li>
             <li class="liDay">Day 3 </li>
             <li class="liDay">Day 4 </li>
