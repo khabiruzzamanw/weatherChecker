@@ -73,12 +73,7 @@ async function request(value) {
 
       let weatherData = await data.json();
 
-<<<<<<< HEAD
-      otherState.style.display = 'flex';
-      forcastPreview.style.display = 'block';
-=======
       console.log(weatherData);
->>>>>>> test
 
       sky.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
       weatherSky.innerHTML = `${weatherData.weather[0].description}`;
