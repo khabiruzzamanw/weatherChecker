@@ -6,6 +6,10 @@ const greetingText = document.querySelector("#greetingText");
 const theme = document.getElementById("theme");
 const forcastPreview = document.querySelector('.forcastPreview');
 
+themeChanger();
+
+
+
 let dateInfo = new Date
 
 date.innerHTML = `${dateInfo.toLocaleDateString('en-Gb').replace(/\//g, ".")}`;
@@ -31,7 +35,7 @@ if (hourCheck < 17 && hourCheck >= 12) {
 
 go.addEventListener("click", function (e) {
   e.preventDefault();
-  let cityName = search.value.trim();
+  let cityName = search.value.toLowerCase().trim();
 
   if (cityName) {
     request(cityName);
@@ -40,7 +44,8 @@ go.addEventListener("click", function (e) {
 
 search.addEventListener("keydown", function (e) {
 
-  let cityName = search.value.trim();
+  let cityName = search.value.toLowerCase().trim();
+
   if (e.key === "Enter") {
     request(cityName);
   }
@@ -80,11 +85,27 @@ async function request(value) {
       dCity.innerHTML = weatherData.name;
       temp.innerHTML = Math.round(weatherData.main.temp) + ` ℃`;
 
-      windSpeed.innerHTML = `<img id="windSpeedImg" src="images/windSpeedDark.svg" alt="">
+      let getWindImg;
+      let getHumidityImg;
+
+      let userThemeName = localStorage.getItem("userTheme") || "light";
+
+
+      if (userThemeName === "dark") {
+        getWindImg = "images/windSpeedLight.svg";
+        getHumidityImg = "images/humidityLight.svg";
+      }
+      else if (userThemeName === "light") {
+        getWindImg = "images/windSpeedDark.svg";
+        getHumidityImg = "images/humidityDark.svg";
+      }
+
+
+      windSpeed.innerHTML = `<img id="windSpeedImg" src=${getWindImg} alt="">
                 <p >${(weatherData.wind.speed * 3.6).toFixed(2)}  km/h</p>`;
 
 
-      humidity.innerHTML = `<img id="humidityImg" src="images/humidityDark.svg" alt="">
+      humidity.innerHTML = `<img id="humidityImg" src=${getHumidityImg} alt="">
                             <p >${weatherData.main.humidity}   %</p>`;
 
       getForecastData(weatherData);
@@ -185,9 +206,10 @@ function getUi(arr) {
 
     let dayParent = document.createElement('div');
 
+    dayParent.setAttribute('class', 'dayParent');
+
     dayParent.innerHTML = `<p class="daytext">${substance.dateInfo}  ${substance.month}</p>`
 
-    dayParent.setAttribute('class', 'dayParent');
 
     dayParent.classList.add(`dayParent${index + 1}`);
 
@@ -255,36 +277,57 @@ function getUi(arr) {
 
 
 
-theme.addEventListener("mouseover", () => {
-  theme.style.cursor = "pointer";
-});
+function themeChanger() {
 
-theme.addEventListener("click", () => {
-  let themeData = document.body.classList;
-  const windSpeedImg = document.querySelector("#windSpeedImg");
-  const humidityImg = document.querySelector("#humidityImg");
+  theme.addEventListener("mouseover", () => {
+    theme.style.cursor = "pointer";
+  });
 
-  if (themeData.contains('dark')) {
-    themeData.replace('dark', 'light');
-    go.src = 'images/searchDark.svg';
-    theme.src = "images/lightMode.svg";
-    if (humidityImg) {
-      humidityImg.src = 'images/humidityDark.svg';
-    };
-    if (windSpeedImg) {
-      windSpeedImg.src = 'images/windSpeedDark.svg';
+  theme.addEventListener("click", () => {
+    let themeData = document.body.classList;
+    const windSpeedImg = document.querySelector("#windSpeedImg");
+    const humidityImg = document.querySelector("#humidityImg");
+
+    if (themeData.contains('dark')) {
+
+      themeData.replace('dark', 'light');
+      theme.src = "images/lightMode.svg";
+
+      localStorage.setItem("userTheme", "light");
+      localStorage.setItem("themeImg", "images/lightMode.svg");
+
+    } else {
+
+      themeData.replace('light', 'dark');
+      theme.src = "images/darkMode.svg";
+
+      localStorage.setItem("userTheme", "dark");
+      localStorage.setItem("themeImg", "images/darkMode.svg");
+
     };
 
-  } else {
-    themeData.replace('light', 'dark');
-    go.src = 'images/searchLight.svg';
-    theme.src = "images/darkMode.svg";
-    if (humidityImg) {
-      humidityImg.src = 'images/humidityLight.svg';
-    };
-    if (windSpeedImg) {
-      windSpeedImg.src = 'images/windSpeedLight.svg';
-    };
-  }
+    let getClassName = localStorage.getItem("userTheme") || "light";
 
-});
+    if (windSpeedImg && humidityImg) {
+      if (getClassName === "dark") {
+        windSpeedImg.src = "images/windSpeedLight.svg";
+        humidityImg.src = "images/humidityLight.svg";
+      }
+      else if (getClassName === "light") {
+        windSpeedImg.src = "images/windSpeedDark.svg";
+        humidityImg.src = "images/humidityDark.svg";
+      }
+    }
+
+  });
+
+  let getClassName = localStorage.getItem("userTheme") || "light";
+  let getThemeImg = localStorage.getItem("themeImg") || "images/lightMode.svg";
+
+
+  document.body.classList.add(getClassName);
+  theme.src = getThemeImg;
+
+};
+
+

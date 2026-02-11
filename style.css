@@ -1,4 +1,15 @@
 :root {
+  --bg-color: #ffffff;
+  --accent-color: #5c7e8f;
+  --container-color: #d4dde290;
+  --button-color: #ffffff;
+  --glass-effect-color: rgba(255, 255, 255, 0);
+  --font-color: #111111;
+  --box-shadow-color: #a2a2a220;
+}
+
+
+.dark {
   --bg-color: #111111;
   --accent-color: rgba(255, 255, 255, 0.15);
   --container-color: #22222290;
@@ -8,15 +19,6 @@
   --box-shadow-color: #a2a2a220;
 }
 
-.light {
-  --bg-color: #ffffff;
-  --accent-color: #5c7e8f;
-  --container-color: #d4dde290;
-  --button-color: #ffffff;
-  --glass-effect-color: rgba(255, 255, 255, 0);
-  --font-color: #111111;
-  --box-shadow-color: #a2a2a220;
-}
 
 * {
   padding: 0px;
@@ -57,8 +59,8 @@ header {
 }
 
 nav {
-  width:fit-content;
-  padding: 1rem 2rem ;
+  width: fit-content;
+  padding: 1rem 2rem;
   background-color: pink;
   background-color: var(--glass-effect-color);
   backdrop-filter: blur(4px);
@@ -317,6 +319,7 @@ main {
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem var(--box-shadow-color),
     0 0 1rem var(--box-shadow-color);
+  animation: showUp 0.3s ease-in;
 }
 
 .forecast .forcastPreview .dayParent .day .dayGrandChild .hourlyTime {
@@ -367,9 +370,9 @@ main {
     margin-right: auto;
   }
 
-  nav{
-    padding:1rem;
-    }
+  nav {
+    padding: 1rem;
+  }
 }
 
 @media screen and (max-width : 780px) {
@@ -419,4 +422,54 @@ main {
   }
 
 
+}
+
+
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+
+  }
+}
+
+@keyframes showUp {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+
+  }
+}
+
+@keyframes showDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(1rem);
+    opacity: 0;
+
+  }
 }
