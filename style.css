@@ -1,87 +1,124 @@
 :root {
-  --bg-color: #ffffff;
-  --accent-color: #5c7e8f;
-  --container-color: #d4dde290;
-  --button-color: #ffffff;
-  --glass-effect-color: rgba(255, 255, 255, 0);
-  --font-color: #111111;
-  --box-shadow-color: #a2a2a220;
+  --bg: #080808;
+  --blured: rgba(0, 0, 0, 0.65);
+  --accent: #a93226;
+  --surface: #111111;
+  --surface-muted: #0d0d0d;
+  --text: #f0f0f0;
+  --text-muted: #555555;
+  --border: rgba(255, 255, 255, 0.07);
+  --button: #080808;
+  --closeButton: #a93226;
+  --saveButton: #1a1a1a;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --deleteToast: #a93226;
+  --addToast: #555555;
+  --note-accent: #c9843a;
+  --journal-accent: #6b8f6b;
+  --todo-accent: #4a7fa5;
+  --surface-hovered: #1a1a1a;
+  --border-hovered: rgba(255, 255, 255, 0.13);
+  --button-hovered: #111111;
+
 }
 
 
-.dark {
-  --bg-color: #111111;
-  --accent-color: rgba(255, 255, 255, 0.15);
-  --container-color: #22222290;
-  --button-color: #111111;
-  --glass-effect-color: rgba(255, 255, 255, 0);
-  --font-color: #ffffff;
-  --box-shadow-color: #a2a2a220;
+.light {
+  --bg: #f7f7f5;
+  --blured: rgba(0, 0, 0, 0.45);
+  --accent: #2563eb;
+  --surface: #ffffff;
+  --surface-muted: #f0f0ee;
+  --text: #111111;
+  --text-muted: #aaaaaa;
+  --border: rgba(0, 0, 0, 0.08);
+  --button: #f7f7f5;
+  --closeButton: #1a56db;
+  --saveButton: #f0f0ee;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --deleteToast: #1a56db;
+  --addToast: #aaaaaa;
+  --note-accent: #b8651a;
+  --journal-accent: #4a7a4a;
+  --todo-accent: #2563eb;
+  --surface-hovered: #ebebea;
+  --border-hovered: rgba(0, 0, 0, 0.15);
+  --button-hovered: #ebebea;
 }
+
 
 
 * {
   padding: 0px;
   margin: 0px;
-  box-sizing: border-box;
-  border: none;
-  text-decoration: none;
   outline: none;
+  border: none;
+  box-sizing: border-box;
 }
 
-img {
-  max-width: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-html {
+html,
+body {
   scroll-behavior: smooth;
 }
 
 body {
-  max-width: 100%;
-  font-family: Arial;
-  background-color: var(--bg-color);
-  color: var(--font-color);
-  font-size: 1rem;
-  overflow-x: hidden;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  transition: background 0.2s ease-in, color 0.2s ease-in;
 }
 
 header {
   width: 100%;
   position: fixed;
   z-index: 1000;
-  top: 1rem;
+  top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 nav {
-  width: fit-content;
-  padding: 1rem 2rem;
+  width: 90%;
+  padding: 1rem;
   background-color: pink;
-  background-color: var(--glass-effect-color);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-bottom: 1px solid var(--accent-color);
-  border-radius: 0 0 0.5rem 0.5rem;
+  background: var(--blured);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow), var(--shadow);
 }
 
 ul {
-  max-width: 100%;
   display: flex;
-  list-style: none;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  list-style: none;
 }
 
+nav ul li a {
+  color: var(--text);
+  text-decoration: none;
+}
 
+.home {
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: var(--accent);
+  margin-right: auto;
+}
 
-ul .home a {
-  color: var(--accent-color);
+.theme {
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme:hover {
+  opacity: 1;
+  transform: rotate(25deg) scale(1.1);
 }
 
 #homeButtonicon {
@@ -90,62 +127,64 @@ ul .home a {
 
 .searchBar {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 1rem;
-  border: 0.1rem solid var(--accent-color);
+  column-gap: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-hovered);
   overflow: hidden;
-  max-width: 100%;
+  transition: background 0.25s ease-in-out, border-color 0.25s ease-in-out;
 }
 
-.searchBar .search {
-  width: 100%;
-  height: 2.5rem;
-  padding-left: 0.5rem;
-  font-size: 1rem;
-  flex: 2;
-  color: var(--font-color);
-  background-color: var(--glass-effect-color);
-
-
+.searchBar:focus-within {
+  background: var(--surface-muted);
+  border-color: var(--accent);
 }
 
-.searchBar .searchButton {
-  width: 50%;
-  height: 2.5rem;
-  flex: 1;
-  background-color: var(--accent-color);
-  font-size: 1rem;
-  color: var(--font-color);
+.search {
+  background: transparent;
+  color: var(--text);
+  padding-left: 0.25rem;
+  border: none;
+  outline: none;
 }
 
-.searchBar .searchButton:hover {
-  opacity: 0.8;
+.search::placeholder {
+  font-size: var(--font);
+  color: var(--text-muted);
+}
+
+.searchButton {
+  background: var(--button);
+  padding: 0.5rem 1rem;
+  color: var(--text);
   cursor: pointer;
+  transition: background 0.25s ease-in-out;
+}
+
+.searchButton:hover {
+  background: var(--button-hovered);
 }
 
 main {
-  max-width: 100%;
-  overflow-x: hidden;
-  margin-top: 5rem;
+  width: 100%;
+  margin-top: 10rem;
 
 }
 
 .container {
-  max-width: 100%;
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   gap: 1rem;
   padding: 2rem;
 
 }
 
 .status {
-  max-width: 100%;
-  background-color: var(--container-color);
-  box-shadow: 0 0 0.5rem var(--box-shadow-color),
-    0 0 1rem var(--box-shadow-color);
+  width: 100%;
+  background-color: var(--surface);
+  box-shadow: var(--shadow), var(--shadow);
   border-radius: 1rem;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -206,12 +245,10 @@ main {
 }
 
 .forecast {
-  max-width: 100%;
-  background-color: var(--container-color);
-  box-shadow: 0 0 0.5rem var(--box-shadow-color),
-    0 0 1rem var(--box-shadow-color);
+  width: 100%;
+  background-color: var(--surface);
+  box-shadow: var(--shadow), var(--shadow);
   border-radius: 1rem;
-  flex: 2;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -231,7 +268,7 @@ main {
 
 .forecast .greeting .time {
   padding: 0.5rem 1rem;
-  background-color: var(--bg-color);
+  background-color: var(--bg);
   border-radius: 0.5rem;
   font-size: 1.25rem;
 }
@@ -259,22 +296,20 @@ main {
 }
 
 .forecast .forcastPreviewContainer ul .tabbed {
-  color: var(--accent-color);
+  color: var(--button-hovered);
 }
 
 .forecast .forcastPreviewContainer ul .liDay:hover {
-  background-color: var(--button-color);
+  background: var(--button);
   cursor: pointer;
   opacity: 1;
-  color: var(--accent-color);
 }
 
 
 .forecast .forcastPreview .dayParent {
   max-width: 100%;
-  background-color: var(--glass-effect-color);
-  border-top: 0.1rem solid var(--accent-color);
-  border-left: 0.1rem solid var(--accent-color);
+  border-top: 0.1rem solid var(--border-hovered);
+  border-left: 0.1rem solid var(--border-hovered);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -293,7 +328,7 @@ main {
   display: flex;
 }
 
-.forecast .forcastPreview .dayParent .daytext {
+.forecast .forcastPreview .dayParent .dayText {
   font-size: 1.5rem;
 }
 
@@ -306,10 +341,8 @@ main {
 }
 
 .forecast .forcastPreview .dayParent .day .dayGrandChild {
-  /* width:100%; */
-  background-color: var(--glass-effect-color);
-  color: var(--font-color);
-  border: 0.1rem solid var(--accent-color);
+  color: text;
+  border: 0.1rem solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -317,8 +350,7 @@ main {
   gap: 0.5rem;
   padding: 0.5rem;
   border-radius: 1rem;
-  box-shadow: 0 0 0.5rem var(--box-shadow-color),
-    0 0 1rem var(--box-shadow-color);
+  box-shadow: var(--shadow), var(--shadow);
   animation: showUp 0.3s ease-in;
 }
 
